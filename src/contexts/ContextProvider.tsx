@@ -1,25 +1,28 @@
 import React, { useContext, createContext, useState } from 'react';
-import { TState } from '../utils/types';
+import { TState, TAction } from '../utils/types';
 
 const initialState = {
-  // activeChat: false,
-  // activeCart: false,
-  // userProfile: false,
-  // notification: false
-};
-const StateContext = createContext<TState>({
   activeMenu: true,
-  setActiveMenu: () => { }
-});
+  setActiveMenu: () => { },
+  isClicked: { chat: false, notification: false, cart: false, userProfile: false },
+  handleClick: () => { }
+};
+
+const StateContext = createContext<TState>(initialState);
 
 interface Props {
   children?: React.ReactNode
 };
 
 export const ContextProvider = ({ children }: Props): JSX.Element => {
-  const [activeMenu, setActiveMenu] = useState<boolean>(true);
+  const [activeMenu, setActiveMenu] = useState<boolean>(initialState.activeMenu);
+  const [isClicked, setIsClicked] = useState<TAction>(initialState.isClicked);
+
+  const handleClick = (name: string): void => {
+    setIsClicked(() => ({ ...initialState.isClicked, [name]: true }));
+  };
   return (
-        <StateContext.Provider value={{ activeMenu, setActiveMenu }}>
+        <StateContext.Provider value={{ activeMenu, setActiveMenu, isClicked, handleClick }}>
             {children}
         </StateContext.Provider>
   );
