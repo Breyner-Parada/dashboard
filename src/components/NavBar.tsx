@@ -12,15 +12,30 @@ import { useStateValue } from '../contexts/ContextProvider';
 const NavButton = ({ title, customFunc, icon, color, dotColor }: any): JSX.Element => (
   <TooltipComponent content={title} position='BottomCenter'>
     <button type='button' onClick={customFunc} style={{ color }} className="relative text-xl rounded-full p-3 hover:bg-light-gray">
-      <span style={{ background: dotColor }} className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2">
+      <span style={{ background: dotColor }} className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2" />
         {icon}
-      </span>
     </button>
   </TooltipComponent>
 );
 
 export const NavBar = (): JSX.Element => {
-  const { activeMenu, setActiveMenu, isClicked, handleClick } = useStateValue();
+  const { activeMenu, setActiveMenu, isClicked, handleClick, screenWidth, setScreenWidth } = useStateValue();
+
+  useEffect(() => {
+    const handleResize = (): void => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => { window.removeEventListener('resize', handleResize); };
+  }, []);
+
+  useEffect(() => {
+    if (screenWidth <= 800) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenWidth]);
 
   return (
     <div className='flex justify-between p-2 md:mx-6 relative'>
