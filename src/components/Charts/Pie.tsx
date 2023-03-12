@@ -1,7 +1,51 @@
 import React from 'react';
+import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, AccumulationSeriesDirective, AccumulationLegend, PieSeries, AccumulationDataLabel, Inject, AccumulationTooltip } from '@syncfusion/ej2-react-charts';
 
-export const Pie = (): any => {
+import { useStateValue } from '../../contexts/ContextProvider';
+
+type Props = {
+  id: string
+  data: any
+  legendVisiblity: boolean
+  height: string
+};
+
+export const Doughnut = ({ id, data, legendVisiblity, height }: Props): JSX.Element => {
+  const { currentMode } = useStateValue();
+
   return (
-    <div>Pie</div>
+    <AccumulationChartComponent
+      id={id}
+      legendSettings={{ visible: legendVisiblity, background: 'white' }}
+      height={height}
+      background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+      tooltip={{ enable: true }}
+    >
+      <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
+      <AccumulationSeriesCollectionDirective>
+        <AccumulationSeriesDirective
+          name="Sale"
+          dataSource={data}
+          xName="x"
+          yName="y"
+          innerRadius="40%"
+          startAngle={0}
+          endAngle={360}
+          radius="70%"
+          explode
+          explodeOffset="10%"
+          explodeIndex={2}
+          dataLabel={{
+            visible: true,
+            name: 'text',
+            position: 'Inside',
+            font: {
+              fontWeight: '600',
+              color: '#fff'
+            }
+          }}
+        />
+      </AccumulationSeriesCollectionDirective>
+    </AccumulationChartComponent>
   );
 };

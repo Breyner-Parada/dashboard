@@ -10,8 +10,8 @@ import { Sidebar } from './Sidebar';
 import { ThemeSettings } from './ThemeSettings';
 import { UserProfile } from './UserProfile';
 import { LineCharts } from './Charts/LineCharts';
-import { Pie } from './Charts/Pie';
+import { Doughnut } from './Charts/Pie';
 import { SparkLine } from './Charts/SparkLine';
 import { Stacked } from './Charts/Stacked';
 
-export { Button, Cart, ChartsHeader, Footer, Header, Chat, NavBar, Notification, Sidebar, ThemeSettings, UserProfile, LineCharts, Pie, SparkLine, Stacked };
+export { Button, Cart, ChartsHeader, Footer, Header, Chat, NavBar, Notification, Sidebar, ThemeSettings, UserProfile, LineCharts, Doughnut, SparkLine, Stacked };

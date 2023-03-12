@@ -149,11 +149,8 @@ const customerGridStatus = (props) => (
   </div>
 );
 export const areaPrimaryXAxis = {
-  valueType: 'DateTime',
   labelFormat: 'y',
   majorGridLines: { width: 0 },
-  intervalType: 'Years',
-  edgeLabelPlacement: 'Shift',
   labelStyle: { color: 'gray' }
 };
 
@@ -168,15 +165,13 @@ export const areaPrimaryYAxis = {
 
 };
 export const barPrimaryXAxis = {
-  valueType: 'Category',
   interval: 1,
   majorGridLines: { width: 0 }
 };
 export const barPrimaryYAxis = {
-  majorGridLines: { width: 0 },
-  majorTickLines: { width: 0 },
-  lineStyle: { width: 0 },
-  labelStyle: { color: 'transparent' }
+  minimum: 0,
+  maximum: 50,
+  title: 'Revenue'
 };
 const areaChartData = [
   [
@@ -333,29 +328,28 @@ export const colorMappingData = [
 export const rangeColorMapping = [
   {
     label: '1°C to 10°C',
-    start: '1',
-    end: '10',
-    colors: colorMappingData[1]
+    start: 1,
+    end: 10,
+    colors: ['#FFFF99']
   },
 
   {
     label: '11°C to 20°C',
-    start: '11',
-    end: '20',
-    colors: colorMappingData[2]
+    start: 11,
+    end: 20,
+    colors: ['#FFA500']
   },
 
   {
     label: '21°C to 30°C',
-    start: '21',
-    end: '30',
-    colors: colorMappingData[3]
+    start: 21,
+    end: 30,
+    colors: ['#FF4040']
   }
 
 ];
 
 export const ColorMappingPrimaryXAxis = {
-  valueType: 'Category',
   majorGridLines: { width: 0 },
   title: 'Months'
 };
@@ -369,7 +363,6 @@ export const ColorMappingPrimaryYAxis = {
 };
 
 export const FinancialPrimaryXAxis = {
-  valueType: 'DateTime',
   minimum: new Date('2016, 12, 31'),
   maximum: new Date('2017, 9, 30'),
   crosshairTooltip: { enable: true },
@@ -386,17 +379,13 @@ export const FinancialPrimaryYAxis = {
 };
 
 export const LinePrimaryXAxis = {
-  valueType: 'DateTime',
   labelFormat: 'y',
-  intervalType: 'Years',
-  edgeLabelPlacement: 'Shift',
   majorGridLines: { width: 0 },
   background: 'white'
 };
 
 export const LinePrimaryYAxis = {
   labelFormat: '{value}%',
-  rangePadding: 'None',
   minimum: 0,
   maximum: 100,
   interval: 20,
@@ -659,7 +648,7 @@ export const earningData = [
     title: 'Customers',
     iconColor: '#03C9D7',
     iconBg: '#E5FAFB',
-    pcColor: 'red-600'
+    pcColor: 'text-red-600'
   },
   {
     icon: <BsBoxSeam />,
@@ -668,7 +657,7 @@ export const earningData = [
     title: 'Products',
     iconColor: 'rgb(255, 244, 229)',
     iconBg: 'rgb(254, 201, 15)',
-    pcColor: 'green-600'
+    pcColor: 'text-green-600'
   },
   {
     icon: <FiBarChart />,
@@ -678,7 +667,7 @@ export const earningData = [
     iconColor: 'rgb(228, 106, 118)',
     iconBg: 'rgb(255, 244, 229)',
 
-    pcColor: 'green-600'
+    pcColor: 'text-green-600'
   },
   {
     icon: <HiOutlineRefresh />,
@@ -687,7 +676,7 @@ export const earningData = [
     title: 'Refunds',
     iconColor: 'rgb(0, 194, 146)',
     iconBg: 'rgb(235, 250, 242)',
-    pcColor: 'red-600'
+    pcColor: 'text-red-600'
   }
 ];
 
@@ -3250,9 +3239,7 @@ export const stackedPrimaryXAxis = {
   majorTickLines: { width: 0 },
   minorTickLines: { width: 0 },
   interval: 1,
-  lineStyle: { width: 0 },
-  labelIntersectAction: 'Rotate45',
-  valueType: 'Category'
+  lineStyle: { width: 0 }
 };
 
 export const stackedPrimaryYAxis = {
